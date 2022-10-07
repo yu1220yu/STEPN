@@ -1,0 +1,53 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+<link rel="stylesheet" href="~/css/signin.css">
+
+@section topCSS{
+    <style>
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            margin-bottom: -60px;
+        }
+    </style>
+}
+
+    <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="box">
+        <div class="form">
+            <h2 class="m-0">Sign up</h2>
+
+            @*<div asp-validation-summary="All" class="text-danger"></div>*@
+
+            <div class="inputBox my-0">
+                <span>Email</span>
+                <input asp-for="Input.Email" type="text" required="required">
+                <i></i>
+            </div>
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+            <div class="inputBox my-0">
+                <span>Password</span>
+                <input asp-for="Input.Password" type="password" required="required">
+                <i></i>
+            </div>
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+            <div class="inputBox my-0">
+                <span>ConfirmPassword</span>
+                <input asp-for="Input.ConfirmPassword" type="password" required="required">
+                <i></i>
+            </div>
+            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+
+            <button type="submit" class="btn btn-warning mt-1">Register</button>
+        </div>
+    </form>
+
+    @section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

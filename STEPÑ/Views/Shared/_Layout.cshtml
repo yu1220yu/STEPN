@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - STEPÑ</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/fontawesome/css/all.css" />
+    <link rel="stylesheet" href="~/lib/toastr.js/toastr.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    @await RenderSectionAsync("topJS", required: false)
+    @await RenderSectionAsync("topCSS", required: false)
+</head>
+<body>
+
+    <header>
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-lg bg-dark fixed-top text-break">
+            <div class="container">
+                <!-- logo -->
+                <a asp-area="" asp-controller="Home" asp-action="Index" style="user-select:none" class="navbar-brand d-flex opacity-75">
+                    <img src="https://i.imgur.com/KOZ0Y8U.jpeg"
+                         alt="logo" class="rounded-circle" style="width:2rem;height:2rem">
+                    <span class="text-warning fw-semibold ps-2 fs-4">
+                        STEPÑ
+                        <small><small><small class="small badge bg-dark text-light p-0">beta</small></small></small>
+                    </span>
+                </a>
+
+                <partial name="_LoginPartial" />
+            </div>
+        </nav>
+    </header>
+
+    <div>
+        <main role="main" class="container">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/toastr.js/toastr.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("endJS", required: false)
+    @await RenderSectionAsync("endCSS", required: false)
+</body>
+</html>

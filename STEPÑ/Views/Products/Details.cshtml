@@ -1,0 +1,56 @@
+﻿@model STEPÑ.Models.DetailViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@section topCSS{
+    <style>
+        main {
+            margin-top: 5rem;
+        }
+        body{
+            background: lightyellow;
+        }
+    </style>
+}
+
+
+<div class="badge bg-warning rounded-pill">
+    <a asp-action="Index" class="btn text-light border-0 px-2">Back</a>
+</div>
+
+<section class="container ps-5 pt-xl-5 d-flex flex-wrap justify-content-lg-between">
+    <div class="p-5 ms-xl-5">
+        <div class="bg-warning d-inline-block w-100 h-100 rounded-circle p-5 bg-opacity-25">
+            <div class="bg-warning d-inline-block w-100 h-100 rounded-circle p-5 bg-opacity-50">
+                <div class="bg-warning d-inline-block w-100 h-100 rounded-circle p-5 bg-opacity-75">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-5 me-lg-5 d-none d-xl-block">
+        <span class="p-3 my-lg-3 d-block fw-semibold"
+              style="background-color: rgb(255, 238, 232);border-left:1rem solid rgb(255 155 100);">Sneaker # @Model.Product.SneakerNum </span>
+        <div class="row p-3">
+            <small class="p-3 fw-semibold">Current Price</small>
+            <span class="display-4 fw-semibold"> @Model.Product.Price NT</span>
+        </div>
+        <button class="btn btn-success rounded-pill fw-semibold border-0 w-100 me-5 px-5 p-2 mt-3">BUY NOW</button>
+    </div>
+
+    <div class="container text-center d-lg-none">
+        <div><span class="badge bg-warning rounded-5 bg-opacity-50 m-1 col-2"><span class="rounded-circle bg-warning px-1">#</span> @Model.Product.SneakerNum </span></div>
+        <span class="badge bg-warning border rounded-5 bg-opacity-50 m-1 col-3"> @Model.Product.Category.Name </span>
+        <div class="d-flex justify-content-evenly py-4">
+            <div class="">
+                <small class="px-1 fw-semibold">Price</small>
+                <span class="display-6 fw-semibold"> @Model.Product.Price NT</span>
+            </div>
+            <button class="btn btn-success rounded-pill fw-semibold border-0">BUY NOW</button>
+        </div>
+    </div>
+
+    <img src="@Model.Product.SneakerImg" style="width:25rem;height:15rem" class="container position-absolute mt-5 ms-xl-5">
+</section>

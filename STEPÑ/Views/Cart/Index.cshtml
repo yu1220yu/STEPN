@@ -1,0 +1,236 @@
+﻿@model IEnumerable<STEPÑ.Models.CartItem>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section topCSS{
+    <style>
+        body {
+            margin-bottom: -60px;
+            margin-top: 5rem;
+        }
+
+        body {
+            background: #212529;
+            color: whitesmoke;
+        }
+
+
+
+
+
+        #msform {
+            text-align: center;
+            position: relative;
+            margin-top: 20px
+        }
+
+
+        #progressbar {
+            margin-bottom: 30px;
+            overflow: hidden;
+            color: lightgrey
+        }
+
+            #progressbar .active {
+                color: #673AB7
+            }
+
+            #progressbar li {
+                font-size: 15px;
+                width: 25%;
+                float: left;
+                position: relative;
+                font-weight: 400
+            }
+
+            #progressbar #cart:before {
+                font-family: FontAwesome;
+                content: "\f07a"
+            }
+
+            #progressbar #detail:before {
+                font-family: FontAwesome;
+                content: "\f007"
+            }
+
+            #progressbar #order:before {
+                font-family: FontAwesome;
+                content: "\f15b"
+            }
+
+            #progressbar #pay:before {
+                font-family: FontAwesome;
+                content: "\f00c"
+            }
+
+            #progressbar li:before {
+                width: 50px;
+                height: 50px;
+                line-height: 45px;
+                display: block;
+                font-size: 20px;
+                color: #ffffff;
+                background: lightgray;
+                border-radius: 50%;
+                margin: 0 auto 10px auto;
+                padding: 2px
+            }
+
+            #progressbar li:after {
+                content: '';
+                width: 100%;
+                height: 2px;
+                background: lightgray;
+                position: absolute;
+                left: 0;
+                top: 25px;
+                z-index: -1
+            }
+
+            #progressbar li.active:before,
+            #progressbar li.active:after {
+                background: #673AB7
+            }
+
+
+
+
+
+        .progressbar {
+            counter-reset: step;
+        }
+
+            .progressbar li {
+                width: 25%;
+                float: left;
+                font-size: 12px;
+                position: relative;
+                text-align: center;
+                text-transform: uppercase;
+                color: #6C757D;
+            }
+
+                .progressbar li:before {
+                    width: 30px;
+                    height: 30px;
+                    content: counter(step);
+                    counter-increment: step;
+                    line-height: 30px;
+                    border: 2px solid #6C757D;
+                    display: block;
+                    text-align: center;
+                    margin: 0 auto 10px auto;
+                    border-radius: 50%;
+                    background-color: white;
+                }
+
+                .progressbar li:after {
+                    width: 100%;
+                    height: 2px;
+                    content: '';
+                    position: absolute;
+                    background-color: #6C757D;
+                    top: 15px;
+                    left: -50%;
+                    z-index: -1;
+                }
+
+                .progressbar li:first-child:after {
+                    content: none;
+                }
+
+                .progressbar li.active {
+                    color: green;
+                }
+
+                    .progressbar li.active:before {
+                        border-color: #55B776;
+                    }
+
+                    .progressbar li.active + li:after {
+                        background-color: #55B776;
+                    }
+    </style>
+}
+
+
+    @* <div>
+        <p>　</p>
+        <ul class="progressbar list-unstyled">
+            <li class="active">Shopping Cart</li>
+            <li>Order Detail</li>
+            <li>Create Order</li>
+            <li>Pay</li>
+        </ul>
+        <p>　</p>
+        <p>　</p>
+    </div>*@
+
+
+
+    <form id="msform">
+        <p>　</p>
+        <ul id="progressbar" class="list-unstyled">
+            <li class="active" id="cart"><strong>Shopping Cart</strong></li>
+            <li id="detail"><strong>Order Detail</strong></li>
+            <li id="order"><strong>Create Order</strong></li>
+            <li id="pay"><strong>Pay</strong></li>
+        </ul>
+    </form>
+
+    <div class="card shadow rounded text-center">
+        <h5 class="card-header">Shopping Cart</h5>
+        <div class="card-body">
+        @if (Model != null)
+        {
+            <table class="table">
+                <thead class="table-borderless">
+                    <tr>
+                        <th></th>
+                        <th>NFT</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="py-3">
+                                # @Html.DisplayFor(modelItem => item.Product.SneakerNum)
+                            </td>
+                            <td>
+                                <img src="@item.Product.SneakerImg" style="width:4.4rem" />
+                            </td>
+                            <td class="pt-3">
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td class="pt-3">
+                                <a class="btn btn-sm btn-danger" asp-action="RemoveItem" asp-route-Id="@item.Product.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="text-center text-muted">Shopping Cart is Empty !</p>
+        }
+        <hr />
+        <div class="">
+            <div class="col text-right pe-5 text-end"> <h4 class="text-dark fw-bold">Total： NT$ @ViewBag.Total</h4></div>
+        </div>
+
+    </div>
+</div>
+<p>　</p>
+<div class="container">
+    <p class="d-flex justify-content-between  mt-3">
+        <a class="btn btn-warning btn-sm text-white" style="padding-left:56px;padding-right:56px;" asp-controller="Products" asp-action="Index">back to MarketPlace</a>
+        <a class="btn btn-success btn-sm text-white" style="padding-left:56px;padding-right:56px;" asp-controller="Order" asp-action="Checkout">go to Pay</a>
+    </p>
+</div>

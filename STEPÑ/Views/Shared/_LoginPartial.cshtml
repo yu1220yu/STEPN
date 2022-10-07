@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav d-flex flex-row">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item my-auto">
+            <a class="nav-link text-muted" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i class="fa-solid fa-hand text-warning pe-1"></i> @User.Identity.Name</a>
+        </li>
+
+        <!-- ShoppingCart -->
+        <li>
+            <a asp-area="" asp-controller="Cart" asp-action="Index" class="btn border-0 p-1 mt-2 ps-2">
+                <img src="https://stepn.io/img/market.svg" alt="marketplace" style="width:2rem;height:2rem">
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <!-- profile -->
+                <div class="btn-group">
+                    <button type="button" class="btn border-0" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img(28).webp"
+                         height="20" loading="lazy"
+                         alt="profile" class="rounded-circle opacity-75 p-1" style="width:38px;height:38px"
+                         onmouseover="style.outline='3px solid #F5F5F5'"
+                         onmouseout="style.outline='3px solid transparent'">
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-sm-end text-center">
+                        <a class="nav-link text-dark d-none d-xl-block" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
+                        <button type="submit" class="nav-link btn btn-link text-dark dropdown-item">Logout</button>
+                    </div>
+                </div>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item px-2">
+            <a class="nav-link btn btn-dark bg-dark text-light rounded-pill small fw-semibold px-3" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+</ul>

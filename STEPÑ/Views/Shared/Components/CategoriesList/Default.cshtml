@@ -1,0 +1,8 @@
+﻿@model IEnumerable<STEPÑ.Models.Category>
+
+<b class="small text-muted pe-2">Category</b>
+@foreach (var item in Model)
+{
+    <a class="btn badge bg-warning rounded-pill border-0 m-1 fw-semibold" asp-action="Index" asp-route-categoryId="@item.Id">@item.Name</a>
+}
+<a class="btn badge bg-lifgt text-warning border-0 m-1 fw-semibold" asp-action="Index">Clear</a>

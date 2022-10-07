@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - STEPÑ</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/fontawesome/css/all.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    @await RenderSectionAsync("topJS", required: false)
+    @await RenderSectionAsync("topCSS", required: false)
+</head>
+<body class="bg-dark">
+
+    <header>
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-lg bg-dark fixed-top text-break">
+            <div class="container">
+                <!-- logo -->
+                <a asp-area="" asp-controller="Home" asp-action="Index" style="user-select:none" class="navbar-brand d-flex opacity-75">
+                    <img src="https://i.imgur.com/KOZ0Y8U.jpeg "
+                         alt="logo" class="rounded-circle" style="width:2rem;height:2rem">
+                    <span class="text-warning fw-semibold ps-2 fs-4">
+                        STEPÑ
+                        <small><small><small class="small badge bg-dark text-light p-0">beta</small></small></small>
+                    </span>
+                </a>
+
+                <div class="d-flex">
+                    <!-- MarketPlace -->
+                    <a asp-area="" asp-controller="Products" asp-action="Index" class="btn d-flex align-items-center border-0 p-1 d-block d-md-none">
+                        <img src="https://stepn.io/img/market.svg" alt="marketplace" style="width:2rem;height:2rem">
+                        <span class="btn text-white border-0 ps-1">MARKETPLACE</span>
+                    </a>
+                    <!-- hamburger -->
+                    <button class="navbar-toggler shadow-none text-white border-0" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasNavbar-expand-lg" aria-controls="offcanvasNavbar-expand-lg">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+
+                <div class="offcanvas offcanvas-end w-100 opacity-75 bg-dark" data-bs-hideresize="true" tabindex="-1"
+                     id="offcanvasNavbar-expand-lg" aria-labelledby="offcanvasNavbar-expand-lg">
+                    <div class="offcanvas-header m-2">
+                        <!-- close -->
+                        <button type="button"
+                                class="btn-close d-inline-block ms-auto shadow-none bg-light rounded-circle me-1"
+                                data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <!-- nav -->
+                    <div class="offcanvas-body">
+                        <div class="w-100 d-lg-flex justify-content-end">
+                            <div class="navbar-nav align-items-center">
+
+                                <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link d-md-none text-light fs-1 m-sm-3 m-xl-0">HOME</a>
+                                <a asp-area="" asp-controller="Home" asp-action="Privacy" class="btn d-flex align-items-center border-0 p-1">
+                                    <span class="btn text-light border-0 d-none d-xl-block">HOW TO PLAY</span>
+                                </a>
+                                <a asp-area="" asp-controller="Home" asp-action="Privacy" class="nav-link d-md-none text-light fs-1 m-sm-3 m-xl-0">HOW TO PLAY</a>
+                                <b class="text-danger d-none d-xl-block">|</b>
+                                <a asp-area="" asp-controller="Home" asp-action="Privacy" class="btn d-flex align-items-center border-0 p-1">
+                                    <span class="btn text-white border-0 d-none d-xl-block">WHITEPAPER</span>
+                                </a>
+                                <a asp-area="" asp-controller="Home" asp-action="Privacy" class="nav-link d-md-none text-light fs-1 m-sm-3 m-xl-0">WHITEPAPER</a>
+                                <b class="text-danger d-none d-xl-block">|</b>
+                                <a asp-area="" asp-controller="Home" asp-action="Privacy" class="btn d-flex align-items-center border-0 p-1">
+                                    <span class="btn text-white border-0 d-none d-xl-block">LINKTREE</span>
+                                </a>
+                                <a asp-area="" asp-controller="Home" asp-action="Privacy" class="nav-link d-md-none text-light fs-1 m-sm-3 m-xl-0">LINKTREE</a>
+                                <b class="text-danger d-none d-xl-block">|</b>
+                                <a asp-area="" asp-controller="Products" asp-action="Index" class="btn d-flex align-items-center border-0 p-1">
+                                    <span class="btn text-white border-0 d-none d-xl-block">MARKETPLACE</span>
+                                </a>
+                                <a asp-area="" asp-controller="Products" asp-action="Index" class="nav-link d-md-none text-light fs-1 m-sm-3 m-xl-0">MARKETPLACE</a>
+                                <b class="text-danger d-none d-xl-block">|</b>
+                                <a asp-area="" asp-controller="Home" asp-action="Privacy" class="btn d-flex align-items-center border-0 p-1">
+                                    <span class="btn text-white border-0 d-none d-xl-block">HELP</span>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div>
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- footer -->
+    <footer class="footer border-top text-muted text-center">
+        <div class="container">
+            © 2022 Copyright -
+            <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-muted text-decoration-none">yu@stepñ.com</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("endJS", required: false)
+    @await RenderSectionAsync("endCSS", required: false)
+</body>
+</html>

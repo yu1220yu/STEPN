@@ -1,0 +1,69 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+body {
+    background: #353535;
+}
+
+.cards {
+    width: 250px;
+    height: 300px;
+    margin: 30px auto;
+}
+
+.card {
+    border-radius: 25px;
+    box-shadow: -11px 11px 1px rgba(0, 0, 0, 0.3);
+}
+
+.card-head {
+    position: relative;
+    height: 200px;
+    background: #fa782e;
+    background: -moz-linear-gradient(-45deg, pink 8%, gold 83%);
+    background: -webkit-linear-gradient(-45deg, pink 8%, gold 83%);
+    background: linear-gradient(135deg, pink 8%, gold 83%);
+    border-radius: 25px 25px 0 0;
+}
+
+.card-logo {
+    width: 14rem;
+}
+
+.back-text {
+    display: block;
+    font-size: 50px;
+    font-weight: 900;
+    margin-left: 20px;
+    opacity: 0.1;
+}
+
+.card-body {
+    height: 125px;
+    background: #fff;
+    border-radius: 0 0 25px 25px;
+}
+
+.badge {
+    position: relative;
+    font-size: 10px;
+    font-weight: 300;
+    color: #fff;
+    padding: 2px 5px;
+    border-radius: 4px;
+    top: -2px;
+    margin-left: 5px;
+}
+
+.product-cart {
+    position: absolute;
+    text-align: center;
+    display: inline-block;
+    border-radius: 7px;
+    margin-top: -10px;
+    margin-left: 66px;
+    box-shadow: -10px 10px 15px -10px #FFC107;
+}

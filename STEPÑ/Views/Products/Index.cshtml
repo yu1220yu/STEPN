@@ -1,0 +1,109 @@
+﻿@model IEnumerable<DetailViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/product.css">
+
+@section topCSS{
+    <style>
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        main{
+            margin-top: 5rem;
+        }
+    </style>
+}
+
+    <div class="d-flex flex-wrap justify-content-center text-center px-2">
+        <div class="col-12 m-auto p-2">
+            <b class="small text-muted pe-2">Type</b>
+            <a class="btn badge bg-warning rounded-pill border-0 m-1 fw-semibold" asp-action="Index">Sneakers</a>
+            <a class="btn badge bg-warning rounded-pill border-0 m-1 fw-semibold" asp-action="">Sneakeboxs</a>
+        </div>
+        <div class="col-12 m-auto p-2">
+            @await Component.InvokeAsync("CategoriesList")
+        </div>
+    </div>
+
+
+    <div class="row">
+    <strong class="text-white pt-3"> Tiene @ViewBag.count NFT </strong>
+    @if (ViewBag.count != 0)
+    {
+        @foreach (var item in Model)
+        {
+            @if (item.Product.Sale)
+            {
+                <!-- card -->
+                <div class="cards col-4 col-xl-3 rounded" style="box-shadow:0px 1px 6px 0px rgb(0 0 0 / 10%)"
+         onmouseover="style.transform='translateY(-2px)',style.boxShadow='0 6px 12px 0 rgb(0 0 0 / 12%), 0 -1px 2px 0 rgb(0 0 0 / 8%)'"
+         onmouseout="style.transform='translateY(0)',style.boxShadow='0px 1px 6px 0px rgb(0 0 0 / 10%)'">
+                    <div class="card">
+                        <div class="card-head">
+                            <img src=" @item.Product.SneakerImg "
+                     alt="logo" class="card-logo p-2 ms-3 ms-xl-0" style="height:10rem">
+
+                            <span class="back-text">
+                                @item.Product.Category.Name
+                            </span>
+                        </div>
+                        <a class="stretched-link" asp-action="Details" asp-route-id="@item.Product.Id"></a>
+                        <div class="card-body">
+                            <span class="d-block pb-5">
+                                <b> # @item.Product.SneakerNum </b>
+                                <span class="badge bg-warning">
+                                    New
+                                </span>
+                            </span>
+
+                            <b>
+                                NT$ @item.Product.Price
+                            </b>
+                            <a class="product-cart stretched-link btn bg-warning text-white rounded-pill" asp-controller="Cart" asp-action="AddtoCart" asp-route-Id="@item.Product.Id" onclick="ShowMessage()">Buy</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+              @*  <section class="col-6 col-xl-3 p-2">
+                    <div class="card h-100 shadow-sm rounded justify-content-between" >*@
+                        @*content*@
+                        @*<span class="btn badge bg-warning rounded-0 rounded-bottom w-75 mx-auto"> @item.Product.Category.Name </span>*@
+                  @*      <img src=" @Html.DisplayFor(modelItem => item.Product.SneakerImg) " class="card-img-top p-3"  />
+                        <span class="btn badge bg-warning rounded-pill w-25 mx-auto"># @Html.DisplayFor(modelItem => item.Product.SneakerNum) </span>
+                        <a class="stretched-link" asp-action="Details" asp-route-id="@item.Product.Id"></a>*@
+                        @*price*@
+                     @*   <div class="card-footer btn bg-secondary bg-opacity-25 border-top-0" style="position: relative;">
+                            <div class="d-flex justify-content-between">
+    
+                                    <b class="fs-5">NT$ @item.Product.Price </b>
+                                    <a class="stretched-link btn badge bg-success bg-opacity-50 stretched-link text-light rounded-pill p-2 px-3" asp-controller="Cart" asp-action="AddtoCart" asp-route-Id="@item.Product.Id" onclick="ShowMessage()">Buy</a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </section>*@
+            }
+        }
+
+    }
+    else
+    {
+        <div class="d-flex justify-content-center">
+            <img src="https://m.stepn.com/images/empty.png" class="col-6 col-xl-3 p-5" />
+        </div>
+    }
+</div>
+
+@section endJS{
+    <script>
+        function ShowMessage() {
+            toastr["success"](" NFT 已加入 ShoppingCart ");
+        }
+    </script>
+}
